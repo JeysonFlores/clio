@@ -1,10 +1,15 @@
-import std/with
+import std/[with]
 import unittest
 import clio
 
 test "app":
-  var app = Clio.newApp("Example")
+  var app = newClioApp("Example")
+  var app2 = newAsyncClioApp("Async Example")
 
   with app:
+    build
+    start
+
+  with app2:
     build
     start

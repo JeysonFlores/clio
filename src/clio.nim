@@ -1,6 +1,6 @@
 # -*- utf-8 -*-
 import std/tables
-
+import std/async
 type
   Opt* = object
   Arg* = object
@@ -9,18 +9,21 @@ type
     args*: OrderedTable[string, Arg]
     flags*: OrderedTable[string, Flag]
     options*: OrderedTable[string, Opt]
-  Clio* = ref object
+  Clio[T] = ref object
     name*: string
-    description*: string
-    version*: string
-    args*: OrderedTable[string, Arg]
-    flags*: OrderedTable[string, Flag]
-    options*: OrderedTable[string, Opt]
-    cb: proc(ctx: Context): void
+    #description*: string
+    #version*: string
+    #args*: OrderedTable[string, Arg]
+    #flags*: OrderedTable[string, Flag]
+    #options*: OrderedTable[string, Opt]
+    cb: proc(ctx: Context): T
 
 
-proc newApp*(_: typedesc[Clio], name: string): Clio =
-  Clio(name: name)
+proc newClioApp*(name: string): Clio[void] =
+  Clio[void](name: name)
+
+proc newAsyncClioApp*(name: string): Clio[Future[void]] =
+  Clio[Future[void]](name: name)
 
 proc build*(self: Clio) = 
   self.name = "OWO"
