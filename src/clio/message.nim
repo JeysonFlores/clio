@@ -19,17 +19,14 @@ const successStyle = MessageStyle(color: fgGreen, text: styleBright, marker: "â€
 const warningStyle = MessageStyle(color: fgRed, text: styleBright, marker: "â€¢")
 
 
-proc alert*(_: typedesc[Message], msg: string,
-    style: MessageStyle = alertStyle) =
+proc alert*(_: typedesc[Message], msg: string, style: MessageStyle = alertStyle) =
   msg.stylize(style)
 
 proc info*(_: typedesc[Message], msg: string, style: MessageStyle = infoStyle) =
   msg.stylize(style)
 
-proc success*(_: typedesc[Message], msg: string,
-    style: MessageStyle = successStyle) =
+proc success*(_: typedesc[Message], msg: string, style: MessageStyle = successStyle) =
   msg.stylize(style)
 
-proc warning*(_: typedesc[Message], msg: string,
-    style: MessageStyle = warningStyle) =
+proc warning*(_: typedesc[Message], msg: string, style: MessageStyle = warningStyle) =
   msg.stylize(style)
